@@ -32,6 +32,6 @@ The shares summed to exactly ₹100.00. A direct read of the expense and share r
 
 **dbms/04\_queries.sql · W4 and R6**
 
-W4 saves a custom-split expense and its shares. Before inserting, it checks that the sum of all submitted share amounts equals the expense total. If the sum does not match, the application raises a validation error and rolls back — no rows are written to either the expenses or shares tables. For the ₹60/₹40 split the check passes and two share rows are inserted with the exact paise amounts.
+W4 saves a custom-split expense and its shares. Before inserting, it checks that the sum of all submitted share amounts equals the expense total. If the sum does not match, the statement writes zero rows and the API returns a validation error. For the ₹60/₹40 split the check passes and two share rows are inserted with the exact paise amounts.
 
-R6 reads the stored shares for a given expense. The W4 query plan and R6 query plan in the separate three-run benchmark confirm the corresponding write and read paths. After the corrected save, R6 returned share_amount = 6000 for Asha and 4000 for Bina.
+R6 reads the stored shares for a given expense. The W4 query plan and R6 query plan in the separate three-run benchmark confirm the corresponding write and read paths. After the corrected save, R6 returned share_paise = 6000 for Asha and 4000 for Bina.
