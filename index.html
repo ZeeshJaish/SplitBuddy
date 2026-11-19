@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SplitBuddy</title>
+  <link rel="icon" href="data:,">
+  <script type="module" crossorigin src="./assets/index-Ds0uJg3g.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CcpEUVJy.css">
+</head>
+<body>
+  <header>
+    <div class="top">
+      <h1>SplitBuddy</h1>
+      <label class="account">Demo account <select id="account" disabled></select></label>
+    </div>
+  </header>
+  <main>
+    <p id="demo-note" class="muted">Demo changes are saved in this browser.</p>
+    <p id="status" role="status"></p>
+    <div class="workspace">
+      <aside aria-label="Your groups">
+        <h2>Your groups</h2>
+        <nav id="groups" aria-label="Switch groups"></nav>
+        <form id="new-group">
+          <label for="group-name">New group</label>
+          <div class="control-pair">
+            <input id="group-name" name="name" required maxlength="80" placeholder="Trip name">
+            <button type="submit" disabled>Create</button>
+          </div>
+        </form>
+      </aside>
+      <p id="empty">Choose a demo account to load your groups.</p>
+      <section id="group" hidden>
+        <div class="group-heading">
+          <h2 id="group-title"></h2>
+          <p id="group-members"></p>
+        </div>
+        <section class="balances" aria-labelledby="balance-heading">
+          <h3 id="balance-heading">Balances</h3>
+          <ul id="balances"></ul>
+        </section>
+        <div class="actions">
+          <details id="expense-panel">
+            <summary>Add expense</summary>
+            <form id="expense-form">
+              <label>Description<input name="description" required maxlength="160"></label>
+              <label>Total (₹)<input name="amount" inputmode="decimal" required placeholder="100.00"></label>
+              <label>Split method
+                <select name="method"><option value="equal">Equal</option><option value="custom">Custom</option></select>
+              </label>
+              <fieldset id="participants"><legend>Split with</legend><div id="participant-rows"></div></fieldset>
+              <button type="submit">Save expense</button>
+            </form>
+          </details>
+          <details id="repayment-panel">
+            <summary>Record repayment</summary>
+            <form id="repayment-form">
+              <label>Recipient<select name="to" id="recipients" required></select></label>
+              <label>Amount (₹)<input name="amount" inputmode="decimal" required placeholder="30.00"></label>
+              <button type="submit">Save repayment</button>
+            </form>
+          </details>
+          <details id="member-panel" hidden>
+            <summary>Add member</summary>
+            <form id="member-form">
+              <label>Person<select name="person" id="nonmembers" required></select></label>
+              <button type="submit">Add member</button>
+            </form>
+          </details>
+        </div>
+        <section class="history" aria-labelledby="history-heading">
+          <h3 id="history-heading">History</h3>
+          <ul id="history"></ul>
+          <button type="button" id="load-more" class="secondary" hidden>Show older entries</button>
+        </section>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
