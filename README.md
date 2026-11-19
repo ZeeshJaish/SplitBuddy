@@ -1,5 +1,9 @@
 # SplitBuddy
 
+[Open the live SplitBuddy demo](https://zeeshjaish.github.io/SplitBuddy/)
+
+The GitHub Pages demo runs the same PostgreSQL schema and queries in the browser. Pick a demo account, open **Weekend trip**, and try an expense or repayment. Your changes are saved in this browser.
+
 SplitBuddy is a project we're building to make sharing expenses with friends simple. It will help people record shared transactions, split costs, keep track of who owes whom, and settle balances clearly.
 
 Whether it's a group trip, dinner, rent, or everyday spending, SplitBuddy aims to keep everyone's share easy to understand.
@@ -29,6 +33,10 @@ PGDATABASE=splitbuddy npm start
 ```
 
 Open [SplitBuddy](http://127.0.0.1:4100). The Weekend trip group shows a ₹900 expense split three ways and a ₹300 repayment. Switch the demo account, open an expense's shares, or create a separate group to try the forms.
+
+## Build the GitHub Pages demo
+
+Run `npm ci` and `npm run build:pages` with Node.js 20.19+ or 22.12+. The static output is in `dist-pages/`. The repository publishes that output from the root of `gh-pages`.
 
 ## DBMS submission
 

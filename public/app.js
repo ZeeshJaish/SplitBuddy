@@ -3,6 +3,7 @@ const account = el("account");
 const expenseForm = el("expense-form");
 const participants = el("participant-rows");
 const older = el("load-more");
+const request = globalThis.splitBuddyDemoRequest ?? fetch;
 const state = { people: [], groups: [], user: "", group: null, cursor: null, version: 0 };
 
 function element(tag, text, className) {
@@ -22,7 +23,7 @@ async function api(path, { user, payload, search } = {}) {
   const params = new URLSearchParams(search);
   if (user) params.set("user", user);
   const query = params.size ? "?" + params.toString() : "";
-  const response = await fetch(path + query, payload ? {
+  const response = await request(path + query, payload ? {
     method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
   } : undefined);
   const data = await response.json();

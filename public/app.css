@@ -31,6 +31,7 @@ h2 { font-size: 1.35rem; line-height: 1.18; }
 h3 { font-size: 1rem; }
 .account { display: flex; align-items: center; gap: 10px; }
 main { padding-block: 24px 45px; }
+#demo-note { margin-bottom: 15px; }
 #status { color: var(--accent); margin-bottom: 15px; }
 #status:empty { display: none; }
 #status.error { color: #8f301c; }

@@ -5,12 +5,17 @@
   "type": "module",
   "description": "Local PostgreSQL expense-sharing application for T0120",
   "scripts": {
-    "start": "node server.mjs"
+    "start": "node server.mjs",
+    "build:pages": "vite build --config vite.pages.config.mjs"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
     "pg": "8.23.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.17",
+    "vite": "7.3.8"
   }
 }
