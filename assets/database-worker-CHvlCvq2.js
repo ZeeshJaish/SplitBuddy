@@ -297,4 +297,4 @@ EXECUTE splitbuddy_record_equal_expense(
 EXECUTE splitbuddy_record_settlement(
     currval(pg_get_serial_sequence('splitbuddy.expense_groups', 'group_id')), 2, 1, 30000
 );
-`;await te({async init(){const e=await je.create("idb://t0120-splitbuddy-v1",{parsers:{[yn.INT8]:r=>r,[yn.NUMERIC]:r=>r}});try{const{rows:[r]}=await e.query("SELECT to_regclass('splitbuddy.users') IS NOT NULL AS initialized");r.initialized||await e.exec(schema);const{rows:[a]}=await e.query("SELECT EXISTS (SELECT 1 FROM splitbuddy.users) AS seeded");return a.seeded||await e.transaction(async n=>{await n.exec(catalog),await n.exec(demoData)}),e}catch(r){throw await e.close(),r}}});
+`;await te({async init(){const e=await je.create("idb://t0120-splitbuddy-v1");try{const{rows:[r]}=await e.query("SELECT to_regclass('splitbuddy.users') IS NOT NULL AS initialized");r.initialized||await e.exec(schema);const{rows:[a]}=await e.query("SELECT EXISTS (SELECT 1 FROM splitbuddy.users) AS seeded");return a.seeded||await e.transaction(async n=>{await n.exec(catalog),await n.exec(demoData)}),e}catch(r){throw await e.close(),r}}});
