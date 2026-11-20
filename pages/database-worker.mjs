@@ -1,4 +1,4 @@
-import { PGlite, types } from "@electric-sql/pglite";
+import { PGlite } from "@electric-sql/pglite";
 import { worker } from "@electric-sql/pglite/worker";
 import schema from "../dbms/03_schema.sql?raw";
 import catalog from "../dbms/04_queries.sql?raw";
@@ -6,10 +6,7 @@ import demoData from "../dbms/demo_data.sql?raw";
 
 await worker({
   async init() {
-    const db = await PGlite.create("idb://t0120-splitbuddy-v1", {
-      // Match node-postgres so IDs and money stay exact as strings.
-      parsers: { [types.INT8]: value => value, [types.NUMERIC]: value => value },
-    });
+    const db = await PGlite.create("idb://t0120-splitbuddy-v1");
     try {
       const { rows: [state] } = await db.query("SELECT to_regclass('splitbuddy.users') IS NOT NULL AS initialized");
       if (!state.initialized) await db.exec(schema);

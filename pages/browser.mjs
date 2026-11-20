@@ -8,7 +8,12 @@ statusLine.textContent = "Starting the demo database…";
 try {
   const worker = new Worker(new URL("./database-worker.mjs", import.meta.url), { type: "module" });
   const db = await PGliteWorker.create(worker, { id: "t0120-splitbuddy-v1" });
-  const adapter = client => ({ query: ({ text, values }) => client.query(text, values) });
+  // The browser client decodes query results. Keep IDs and paise as strings, like node-postgres.
+  const parsers = {
+    20: value => value, // PostgreSQL bigint
+    1700: value => value, // PostgreSQL numeric
+  };
+  const adapter = client => ({ query: ({ text, values }) => client.query(text, values, { parsers }) });
   const handleRequest = createApi(catalog, {
     ...adapter(db),
     read: run => db.transaction(tx => run(adapter(tx))),
